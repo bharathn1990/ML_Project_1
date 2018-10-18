@@ -3,3 +3,5 @@ pipeline.py - General pipeline for prediction. Uses functions from proj1_helpers
 proj1_helpers.py - Helper functions to read input, process input and create output files. 
 
 implementations.py - Functions asked for in the project sheet go here. 
+
+logistic_regression.py - All the functions required for the logistic regression go here.
