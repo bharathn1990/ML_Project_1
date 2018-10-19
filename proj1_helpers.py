@@ -64,7 +64,7 @@ def get_data_by_type(input_data, type_tag):
         input_data_ss = input_data[:, 13:]
     return input_data_ss
 
-# Standardize the data
+# Standardize the training data using Z score standardization
 def standardize_training(x):
 	# Author : OT
 	# Date: 10/10/2018
@@ -74,12 +74,21 @@ def standardize_training(x):
 	x = x / std_x
 	return x, mean_x, std_x
 	
+# Standardize the test data using the mean and SD of the training data
 def standardize_test(x,mean_x,std_x):
 	"""Standardize the original data set."""
 	x = x - mean_x
 	x = x / std_x
 	return x
-	
+
+# Standardize data using min-max standardization
+def standardize_minmax(tx):
+	n_col = tx.shape[0]
+	tx_return = tx.copy()
+	for col in range(n_col):
+		tx_return[:,col] = (tx[:,col] - tx[:,col].amin())/(tx[:,col].amax() - tx[:,col].amin())
+	return tx_return
+
 # Remove outliers from the dataset. i.e. points which are more than 2 SD away.
 def remove_outliers(tx,y,threshold):
     #Author : BN 
